@@ -1,5 +1,5 @@
 <template>
-  <p class="display-4 fw-bold">{{ title }}</p>
+  <p :class="['display-4', 'fw-bold', titleColor]">{{ title }}</p>
   <div class="progress">
     <div
       :class="['progress-bar', colorBar]"
@@ -34,6 +34,12 @@ export default {
         return "fullLife";
       }
     },
+    titleColor() {
+      if (this.title === "Player") {
+        return "playerTitle";
+      }
+      return "monsterTitle";
+    },
   },
 };
 </script>
@@ -49,5 +55,11 @@ export default {
 
 .lowLife {
   background-color: orangered;
+}
+.playerTitle {
+  color: greenyellow;
+}
+.monsterTitle {
+  color: rgb(177, 19, 50);
 }
 </style>

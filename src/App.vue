@@ -18,7 +18,7 @@
     @quit="playAgain"
   ></set-control>
 
-  <set-log>histórico das jogadas</set-log>
+  <set-log v-if="!winner && round >= 1" :logs="logs"></set-log>
 </template>
 
 <script>
@@ -34,6 +34,7 @@ export default {
       playerHealth: 100,
       winner: "",
       round: 0,
+      logs: [],
     };
   },
   watch: {
@@ -54,28 +55,40 @@ export default {
   },
   methods: {
     attack() {
-      this.monsterHealth -= randomValue(5, 15);
+      let value = randomValue(5, 15);
+      this.monsterHealth -= value;
       setTimeout(this.monsterAttack, 500);
+      this.setLogs("player", "attack", value);
       this.round++;
     },
     superAttack() {
-      this.monsterHealth -= randomValue(10, 25);
+      let value = randomValue(10, 25);
+      this.monsterHealth -= value;
       setTimeout(this.monsterAttack, 500);
+      this.setLogs("player", "superattack", value);
       this.round++;
     },
     heal() {
-      this.playerHealth += randomValue(5, 20);
+      let value = randomValue(5, 20);
+      this.playerHealth += value;
       setTimeout(this.monsterAttack, 500);
+      this.setLogs("player", "heal", value);
       this.round++;
     },
     monsterAttack() {
-      this.playerHealth -= randomValue(5, 20);
+      let value = randomValue(5, 20);
+      this.playerHealth -= value;
+      this.setLogs("monster", "attack", value);
     },
     playAgain() {
       this.monsterHealth = 100;
       this.playerHealth = 100;
       this.winner = "";
       this.round = 0;
+      this.logs = [];
+    },
+    setLogs(who, what, value) {
+      this.logs.unshift({ who: who, what: what, value: value });
     },
   },
 };
@@ -86,5 +99,12 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: rgb(114, 152, 209);
+  font-weight: bolder;
+  font-size: 35pt;
+}
+body {
+  background-position-x: -2cm;
+  background-image: url(https://finalfantasyxv.square-enix-games.com/public/img/playstation-vr/playstation-vr-key-art.jpg);
 }
 </style>

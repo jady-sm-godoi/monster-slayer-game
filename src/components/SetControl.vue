@@ -1,5 +1,5 @@
 <template>
-  <div class="alert alert-dark" role="alert">
+  <div class="alert" role="alert" id="control">
     <control-button title="attack" @click="attack"></control-button>
     <control-button
       :disabled="disabled"
@@ -43,4 +43,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#control {
+  text-align: center;
+  background-color: rgba(75, 74, 75, 0.651);
+  margin: 0;
+}
+</style>

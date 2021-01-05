@@ -40,7 +40,7 @@ export default {
       if (this.winner === "player") {
         return "https://storage.googleapis.com/adm-portal.appspot.com/noticias/_imgHighlight/artigo_78025.jpg?mtime=20181125004021&focal=none";
       } else if (this.winner === "monster") {
-        return "https://i.pinimg.com/474x/1a/e5/73/1ae5739f99f3a46410e7373ad369285f.jpg";
+        return "https://finalfantasyxv.square-enix-games.com/public/img/playstation-vr/playstation-vr-key-art.jpg";
       } else {
         return "https://static.todamateria.com.br/upload/ad/iv/adivinhas-cke.jpg";
       }
@@ -58,5 +58,7 @@ export default {
 #card {
   width: 18rem;
   margin: 15px;
+  padding: 5px;
+  text-align: center;
 }
 </style>
