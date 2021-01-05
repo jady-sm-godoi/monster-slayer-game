@@ -1,5 +1,7 @@
 # monster-slayer
 
+```This game was inspired by an exercise in the Vue course - The Complete Guide (w / Router, Vuex, Composition API) by Professor Maximilian Schwarzmüller```
+
 ## Project setup
 ```
 npm install
