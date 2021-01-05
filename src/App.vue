@@ -81,4 +81,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+h1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
