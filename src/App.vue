@@ -1,14 +1,14 @@
 <template>
   <h1>Monster Slayer</h1>
-
+  <!-- components: life of players -->
   <life-board :mHealth="monsterHealth" :pHealth="playerHealth"
     >barras de vida</life-board
   >
-
+  <!-- components: results of play -->
   <match-result :winner="winner" @playAgain="playAgain"
     >resultado do jogo</match-result
   >
-
+  <!-- components: controls buttons -->
   <set-control
     v-if="!winner"
     @attack="attack"
@@ -17,17 +17,18 @@
     :round="round"
     @quit="playAgain"
   ></set-control>
-
+  <!-- components: actions list of players -->
   <set-log v-if="!winner && round >= 1" :logs="logs"></set-log>
 </template>
 
 <script>
 function randomValue(min, max) {
+  // function to generate value for attacks and heals
   return Math.floor(Math.random() * (max - min) + min);
 }
 export default {
   name: "App",
-  components: ["life-board", "set-control", "match-result"],
+  components: ["life-board", "set-control", "match-result", "set-control"],
   data() {
     return {
       monsterHealth: 100,
@@ -38,6 +39,7 @@ export default {
     };
   },
   watch: {
+    // these functions define the 'winner' value according to the 'monsterHealth' and 'playerHealth' values
     monsterHealth(value) {
       if (value <= 0 && this.playerHealth <= 0) {
         this.winner = "draw";
@@ -54,6 +56,7 @@ export default {
     },
   },
   methods: {
+    // the actions of game
     attack() {
       let value = randomValue(5, 15);
       this.monsterHealth -= value;
@@ -81,6 +84,7 @@ export default {
       this.setLogs("monster", "attack", value);
     },
     playAgain() {
+      // for restart game
       this.monsterHealth = 100;
       this.playerHealth = 100;
       this.winner = "";
@@ -88,6 +92,7 @@ export default {
       this.logs = [];
     },
     setLogs(who, what, value) {
+      // accessory function to compose the log
       this.logs.unshift({ who: who, what: what, value: value });
     },
   },

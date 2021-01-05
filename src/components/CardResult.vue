@@ -1,4 +1,5 @@
 <template>
+  <!-- model of card with image, text and button -->
   <div class="card text-white bg-dark mb-3" style="" id="card">
     <img :src="images" class="card-img-top" alt="..." />
     <div class="card-body">
@@ -19,6 +20,7 @@ export default {
   emits: ["playAgain"],
   computed: {
     greeting() {
+      // function define the title of card
       if (this.winner === "player") {
         return "CONGRATULATIONS!";
       } else if (this.winner === "monster") {
@@ -28,6 +30,7 @@ export default {
       }
     },
     message() {
+      // function define the text of card
       if (this.winner === "player") {
         return "You fought bravely! The monster didn't stand a chance.";
       } else if (this.winner === "monster") {
@@ -48,6 +51,7 @@ export default {
   },
   methods: {
     playAgain() {
+      // function emit for the function in MatchResult.vue that ...
       this.$emit("playAgain");
     },
   },

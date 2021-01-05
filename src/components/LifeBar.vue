@@ -17,6 +17,7 @@ export default {
   props: { title: String, life: Number },
   computed: {
     portionLife() {
+      // sets the size of the bars according to the value of life
       if (this.life <= 0) {
         return { width: "0%" };
       } else {
@@ -26,6 +27,7 @@ export default {
       }
     },
     colorBar() {
+      // sets the color of the bars according to the life value
       if (this.life < 66 && this.life > 33) {
         return "middleLife";
       } else if (this.life <= 33) {
@@ -35,6 +37,7 @@ export default {
       }
     },
     titleColor() {
+      // define the color of the bar titles
       if (this.title === "Player") {
         return "playerTitle";
       }

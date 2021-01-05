@@ -27,6 +27,7 @@ export default {
   emits: ["playAgain"],
   methods: {
     playAgain() {
+      // ... emit for the function in App.vue that restart game
       this.$emit("playAgain");
     },
   },

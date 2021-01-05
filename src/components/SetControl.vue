@@ -1,17 +1,27 @@
 <template>
   <div class="alert" role="alert" id="control">
-    <control-button title="attack" @click="attack"></control-button>
     <control-button
+      name="attack-button"
+      title="attack"
+      @click="attack"
+    ></control-button>
+    <control-button
+      name="superattack-button"
       :disabled="disabled"
       title="super"
       @click="superattack"
     ></control-button>
     <control-button
+      name="heal-button"
       :disabled="disabled"
       title="heal"
       @click="heal"
     ></control-button>
-    <control-button @click="quit" title="quit"></control-button>
+    <control-button
+      name="heal-button"
+      @click="quit"
+      title="quit"
+    ></control-button>
   </div>
 </template>
 
@@ -23,6 +33,7 @@ export default {
   emits: ["attack", "superattack", "heal", "quit"],
   computed: {
     disabled() {
+      // disable the super and heal button
       return this.round % 3 !== 0;
     },
   },
