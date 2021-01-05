@@ -1,9 +1,17 @@
 <template>
   <div class="alert alert-dark" role="alert">
     <control-button title="attack" @click="attack"></control-button>
-    <control-button title="super" @click="superattack"></control-button>
-    <control-button title="heal" @click="heal"></control-button>
-    <control-button title="quit"></control-button>
+    <control-button
+      :disabled="disabled"
+      title="super"
+      @click="superattack"
+    ></control-button>
+    <control-button
+      :disabled="disabled"
+      title="heal"
+      @click="heal"
+    ></control-button>
+    <control-button @click="quit" title="quit"></control-button>
   </div>
 </template>
 
@@ -11,7 +19,13 @@
 import ControlButton from "./ControlButton.vue";
 export default {
   components: { ControlButton },
-  emits: ["attack", "superattack", "heal"],
+  props: { round: Number },
+  emits: ["attack", "superattack", "heal", "quit"],
+  computed: {
+    disabled() {
+      return this.round % 3 !== 0;
+    },
+  },
   methods: {
     attack() {
       this.$emit("attack");
@@ -21,6 +35,9 @@ export default {
     },
     heal() {
       this.$emit("heal");
+    },
+    quit() {
+      this.$emit("quit");
     },
   },
 };

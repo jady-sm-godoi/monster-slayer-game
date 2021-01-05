@@ -1,0 +1,62 @@
+<template>
+  <div class="card text-white bg-dark mb-3" style="" id="card">
+    <img :src="images" class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ greeting }}</h5>
+      <p class="card-text">
+        {{ message }}
+      </p>
+      <button class="btn btn-danger" @click="playAgain">
+        PLAY AGAIN
+      </button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: { winner: String },
+  emits: ["playAgain"],
+  computed: {
+    greeting() {
+      if (this.winner === "player") {
+        return "CONGRATULATIONS!";
+      } else if (this.winner === "monster") {
+        return "WHAT A SHAME!";
+      } else {
+        return "OK! TRY AGAIN";
+      }
+    },
+    message() {
+      if (this.winner === "player") {
+        return "You fought bravely! The monster didn't stand a chance.";
+      } else if (this.winner === "monster") {
+        return "You faltered in the attacks. Take your potion whenever you can. Be brave!";
+      } else {
+        return "The monster is strong, but so are you. Be smarter and you will win!";
+      }
+    },
+    images() {
+      if (this.winner === "player") {
+        return "https://storage.googleapis.com/adm-portal.appspot.com/noticias/_imgHighlight/artigo_78025.jpg?mtime=20181125004021&focal=none";
+      } else if (this.winner === "monster") {
+        return "https://i.pinimg.com/474x/1a/e5/73/1ae5739f99f3a46410e7373ad369285f.jpg";
+      } else {
+        return "https://static.todamateria.com.br/upload/ad/iv/adivinhas-cke.jpg";
+      }
+    },
+  },
+  methods: {
+    playAgain() {
+      this.$emit("playAgain");
+    },
+  },
+};
+</script>
+
+<style scoped>
+#card {
+  width: 18rem;
+  margin: 15px;
+}
+</style>
